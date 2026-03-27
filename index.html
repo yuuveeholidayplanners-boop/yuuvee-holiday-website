@@ -38,8 +38,8 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(3, 21, 51, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(3, 21, 51, 0.96);
+      backdrop-filter: blur(12px);
       padding: 16px 6%;
       display: flex;
       justify-content: space-between;
@@ -54,17 +54,17 @@
     }
 
     .brand img {
-      height: 52px;
+      height: 54px;
       width: auto;
       border-radius: 10px;
       object-fit: contain;
       background: white;
-      padding: 4px;
+      padding: 5px;
     }
 
     .brand-name {
       color: #fff;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 800;
       letter-spacing: 0.3px;
     }
@@ -114,19 +114,19 @@
     }
 
     .slide:nth-child(1) {
-      background-image: linear-gradient(rgba(2, 16, 40, 0.55), rgba(2, 16, 40, 0.55)),
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
       url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
       animation-delay: 0s;
     }
 
     .slide:nth-child(2) {
-      background-image: linear-gradient(rgba(2, 16, 40, 0.55), rgba(2, 16, 40, 0.55)),
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
       url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80');
       animation-delay: 6s;
     }
 
     .slide:nth-child(3) {
-      background-image: linear-gradient(rgba(2, 16, 40, 0.55), rgba(2, 16, 40, 0.55)),
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
       url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80');
       animation-delay: 12s;
     }
@@ -162,7 +162,7 @@
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 72px;
-      line-height: 1.1;
+      line-height: 1.08;
       font-weight: 900;
       margin-bottom: 20px;
       text-shadow: 0 10px 30px rgba(0,0,0,0.25);
@@ -192,6 +192,8 @@
       transition: all 0.3s ease;
       display: inline-block;
       box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+      border: none;
+      cursor: pointer;
     }
 
     .btn-whatsapp {
@@ -419,7 +421,7 @@
     .enquiry-popup {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       display: none;
       align-items: center;
       justify-content: center;
@@ -430,11 +432,13 @@
     .enquiry-box {
       background: white;
       width: 100%;
-      max-width: 700px;
+      max-width: 760px;
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 30px 70px rgba(0,0,0,0.25);
       animation: popupFade 0.3s ease;
+      max-height: 92vh;
+      overflow-y: auto;
     }
 
     @keyframes popupFade {
@@ -467,7 +471,7 @@
       gap: 16px;
     }
 
-    .popup-form input, .popup-form textarea {
+    .popup-form input, .popup-form textarea, .popup-form select {
       width: 100%;
       padding: 15px 16px;
       border: 1px solid #d1d5db;
@@ -581,7 +585,7 @@
       <h1>Travel Beyond Ordinary</h1>
       <p>Curated domestic and international holidays with premium service, comfort and unforgettable experiences by Yuuvee Holiday Planners.</p>
       <div class="hero-buttons">
-        <a href="https://wa.me/917708541040" class="btn btn-whatsapp">WhatsApp Enquiry</a>
+        <a href="https://wa.me/919600953883" class="btn btn-whatsapp" target="_blank">WhatsApp Enquiry</a>
         <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
         <a href="javascript:void(0)" onclick="openPopup()" class="btn btn-enquire">Enquire Now</a>
       </div>
@@ -622,7 +626,7 @@
 
     <div class="packages-grid">
       <div class="package-card">
-        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80');"></div>
         <div class="package-name">Andaman</div>
       </div>
 
@@ -647,7 +651,7 @@
       </div>
 
       <div class="package-card">
-        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80');"></div>
         <div class="package-name">Munnar</div>
       </div>
     </div>
@@ -738,7 +742,7 @@
     </div>
 
     <div class="contact-buttons">
-      <a href="https://wa.me/917708541040" class="btn btn-whatsapp">WhatsApp Enquiry</a>
+      <a href="https://wa.me/919600953883" class="btn btn-whatsapp" target="_blank">WhatsApp Enquiry</a>
       <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
       <a href="javascript:void(0)" onclick="openPopup()" class="btn btn-enquire">Enquire Now</a>
     </div>
@@ -748,7 +752,7 @@
     © 2026 Yuuvee Holiday Planners Private Limited. All Rights Reserved.
   </div>
 
-  <a href="https://wa.me/917708541040" class="floating-whatsapp" target="_blank">💬</a>
+  <a href="https://wa.me/919600953883" class="floating-whatsapp" target="_blank">💬</a>
 
   <div class="enquiry-popup" id="enquiryPopup">
     <div class="enquiry-box">
@@ -756,16 +760,22 @@
         Enquire Now
         <span class="close-btn" onclick="closePopup()">×</span>
       </div>
-      <form class="popup-form">
-        <input type="text" placeholder="Name *" required>
-        <input type="text" placeholder="City of Residence *" required>
-        <input type="email" placeholder="Email *" required>
-        <input type="tel" placeholder="Phone Number *" required>
-        <input type="text" placeholder="WhatsApp Number *" required>
-        <input type="text" placeholder="Travel Destination *" required>
-        <input type="date" required>
-        <input type="number" placeholder="No. of People *" required>
-        <textarea placeholder="Tell us about your trip plan..."></textarea>
+
+      <form class="popup-form" id="enquiryForm" action="https://formsubmit.co/your-email@example.com" method="POST">
+        <input type="hidden" name="_subject" value="New Travel Enquiry - Yuuvee Holiday Planners">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <input type="text" name="Name" id="name" placeholder="Name *" required>
+        <input type="text" name="City" id="city" placeholder="City of Residence *" required>
+        <input type="email" name="Email" id="email" placeholder="Email *" required>
+        <input type="tel" name="Phone" id="phone" placeholder="Phone Number *" required>
+        <input type="text" name="WhatsApp" id="whatsapp" placeholder="WhatsApp Number *" required>
+        <input type="text" name="Destination" id="destination" placeholder="Travel Destination *" required>
+        <input type="date" name="Travel Date" id="travelDate" required>
+        <input type="number" name="People" id="people" placeholder="No. of People *" required>
+        <textarea name="Trip Details" id="details" placeholder="Tell us about your trip plan..."></textarea>
+
         <button type="submit">Submit Enquiry</button>
       </form>
     </div>
@@ -789,7 +799,38 @@
 
     setTimeout(() => {
       openPopup();
-    }, 4000);
+    }, 5000);
+
+    document.getElementById("enquiryForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const city = document.getElementById("city").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const destination = document.getElementById("destination").value;
+      const travelDate = document.getElementById("travelDate").value;
+      const people = document.getElementById("people").value;
+      const details = document.getElementById("details").value;
+
+      const message = `*New Travel Enquiry - Yuuvee Holiday Planners*%0A%0A` +
+        `*Name:* ${name}%0A` +
+        `*City:* ${city}%0A` +
+        `*Email:* ${email}%0A` +
+        `*Phone:* ${phone}%0A` +
+        `*WhatsApp:* ${whatsapp}%0A` +
+        `*Destination:* ${destination}%0A` +
+        `*Travel Date:* ${travelDate}%0A` +
+        `*No. of People:* ${people}%0A` +
+        `*Trip Details:* ${details}`;
+
+      window.open(`https://wa.me/919600953883?text=${message}`, '_blank');
+
+      setTimeout(() => {
+        e.target.submit();
+      }, 1000);
+    });
   </script>
 
 </body>
