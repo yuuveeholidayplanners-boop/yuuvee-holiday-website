@@ -4,49 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yuuvee Holiday Planners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
     }
 
     body {
-      background: #f5f7fb;
-      color: #111827;
+      background: #f7f9fc;
+      color: #0f172a;
+      overflow-x: hidden;
     }
 
     a {
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(6, 28, 63, 0.96);
-      backdrop-filter: blur(8px);
       padding: 18px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 999;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      background: rgba(5, 24, 56, 0.96);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
     }
 
     .logo {
-      color: white;
+      color: #fff;
       font-size: 30px;
       font-weight: 800;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
     .nav-links a {
-      color: white;
-      margin-left: 28px;
-      font-size: 17px;
+      color: #fff;
+      font-size: 16px;
       font-weight: 600;
       transition: 0.3s;
     }
@@ -56,71 +70,85 @@
     }
 
     .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(4, 20, 50, 0.45), rgba(4, 20, 50, 0.55)),
-      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(5, 20, 50, 0.55), rgba(5, 20, 50, 0.55)),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      padding: 120px 7% 80px;
       text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero-content {
-      max-width: 900px;
       color: white;
     }
 
-    .hero-content h1 {
-      font-size: 62px;
-      font-weight: 900;
-      margin-bottom: 18px;
-      line-height: 1.1;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    .hero-content {
+      max-width: 950px;
     }
 
-    .hero-content p {
-      font-size: 24px;
-      margin-bottom: 36px;
-      color: #f1f5f9;
+    .hero-tag {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.18);
+      color: #bae6fd;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .hero p {
+      font-size: 22px;
+      line-height: 1.8;
+      color: #e2e8f0;
+      margin-bottom: 38px;
       font-weight: 500;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 18px;
       justify-content: center;
       flex-wrap: wrap;
+      gap: 18px;
     }
 
     .btn {
       padding: 16px 34px;
       border-radius: 999px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
       display: inline-block;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
     }
 
-    .btn-primary {
+    .btn-whatsapp {
       background: linear-gradient(135deg, #25D366, #16a34a);
       color: white;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, #16a34a, #15803d);
+    .btn-whatsapp:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(37, 211, 102, 0.28);
     }
 
-    .btn-secondary {
+    .btn-call {
       background: linear-gradient(135deg, #38bdf8, #0ea5e9);
       color: white;
     }
 
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    .btn-call:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(14, 165, 233, 0.28);
     }
 
     .section {
@@ -132,89 +160,162 @@
       font-size: 42px;
       font-weight: 900;
       color: #0b2c5f;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .section-subtitle {
       text-align: center;
       font-size: 18px;
       color: #64748b;
-      margin-bottom: 46px;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 26px;
+    }
+
+    .feature-box {
+      background: white;
+      padding: 30px 24px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+      transition: 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 38px rgba(15, 23, 42, 0.12);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 18px;
+    }
+
+    .feature-box h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      font-size: 15px;
+      color: #64748b;
+      line-height: 1.8;
     }
 
     .packages-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 28px;
     }
 
-    .card {
+    .package-card {
       background: white;
-      border-radius: 24px;
+      border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.10);
+      transition: 0.35s ease;
     }
 
-    .card:hover {
+    .package-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);
+      box-shadow: 0 24px 46px rgba(15, 23, 42, 0.16);
     }
 
-    .card-image {
+    .package-image {
       height: 220px;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    .card-title {
+    .package-name {
       background: linear-gradient(135deg, #123c82, #0b2c5f);
       color: white;
       text-align: center;
-      padding: 20px 14px;
-      font-size: 22px;
+      padding: 18px 12px;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: 0.3px;
     }
 
+    .services-section {
+      background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .service-box {
+      background: white;
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+      transition: 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-6px);
+    }
+
+    .service-box h3 {
+      font-size: 21px;
+      font-weight: 800;
+      color: #0b2c5f;
+      margin-bottom: 10px;
+    }
+
+    .service-box p {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
     .contact-section {
-      background: linear-gradient(135deg, #041a3a, #062b61);
+      background: linear-gradient(135deg, #041a3a, #072b61);
       color: white;
       text-align: center;
-      padding: 85px 7%;
-      margin-top: 20px;
+      padding: 90px 7%;
     }
 
     .contact-section h2 {
       font-size: 42px;
-      margin-bottom: 28px;
       font-weight: 900;
+      margin-bottom: 22px;
     }
 
-    .contact-details {
+    .contact-text {
       max-width: 850px;
       margin: 0 auto;
       font-size: 18px;
       line-height: 2.2;
-      color: #e2e8f0;
+      color: #dbeafe;
     }
 
-    .contact-details strong {
+    .contact-text strong {
       color: white;
-    }
-
-    .contact-buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
     }
 
     .instagram-link {
       color: #38bdf8;
       font-weight: 800;
+    }
+
+    .contact-buttons {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
     }
 
     .footer {
@@ -225,10 +326,16 @@
       font-size: 15px;
     }
 
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 52px;
+      }
+    }
+
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         padding: 14px 5%;
       }
 
@@ -237,17 +344,26 @@
         text-align: center;
       }
 
+      .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
       .nav-links a {
-        margin: 0 10px;
         font-size: 15px;
       }
 
-      .hero-content h1 {
-        font-size: 40px;
+      .hero {
+        padding-top: 140px;
       }
 
-      .hero-content p {
-        font-size: 18px;
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 17px;
       }
 
       .section-title,
@@ -255,15 +371,19 @@
         font-size: 32px;
       }
 
-      .card-image {
-        height: 190px;
+      .section-subtitle {
+        font-size: 16px;
       }
 
-      .card-title {
-        font-size: 20px;
+      .package-image {
+        height: 200px;
       }
 
-      .contact-details {
+      .package-name {
+        font-size: 22px;
+      }
+
+      .contact-text {
         font-size: 17px;
       }
     }
@@ -276,107 +396,177 @@
     <div class="nav-links">
       <a href="#domestic">Domestic</a>
       <a href="#international">International</a>
+      <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Explore The World With Luxury Travel</h1>
-      <p>Premium Domestic & International Tour Packages Tailored For You</p>
+      <div class="hero-tag">Premium Domestic & International Travel Planning</div>
+      <h1>Your Dream Vacation Starts Here</h1>
+      <p>Luxury packages, family tours, honeymoon trips, international holidays and personalized travel planning crafted with care by Yuuvee Holiday Planners.</p>
       <div class="hero-buttons">
-        <a href="https://wa.me/917708541040" class="btn btn-primary">WhatsApp Enquiry</a>
-        <a href="tel:7708541040" class="btn btn-secondary">Call Directly</a>
+        <a href="https://wa.me/917708541040" class="btn btn-whatsapp">WhatsApp Enquiry</a>
+        <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Why Choose Yuuvee?</h2>
+    <p class="section-subtitle">Trusted travel planning with premium support and memorable experiences</p>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon">✈️</div>
+        <h3>Customized Itineraries</h3>
+        <p>Every trip is carefully planned to suit your budget, style and travel preferences.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">🏨</div>
+        <h3>Premium Stays</h3>
+        <p>We help you choose comfortable and quality stays for a smooth travel experience.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">💑</div>
+        <h3>Honeymoon & Family Tours</h3>
+        <p>Specially curated packages for couples, families, groups and special celebrations.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">📞</div>
+        <h3>End-to-End Support</h3>
+        <p>From enquiry to trip completion, we assist you with planning, booking and guidance.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="domestic">
     <h2 class="section-title">Domestic Packages</h2>
-    <p class="section-subtitle">Handpicked destinations for your dream holidays across India</p>
+    <p class="section-subtitle">Beautiful handpicked destinations across India</p>
 
     <div class="packages-grid">
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Andaman</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Andaman</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Kashmir</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Kashmir</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Goa</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Goa</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Kerala</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Kerala</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Ooty</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Ooty</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Munnar</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Munnar</div>
       </div>
     </div>
   </section>
 
   <section class="section" id="international" style="background:#ffffff;">
     <h2 class="section-title">International Packages</h2>
-    <p class="section-subtitle">Curated premium escapes to the world’s most loved destinations</p>
+    <p class="section-subtitle">Luxury escapes to the world’s most loved destinations</p>
 
     <div class="packages-grid">
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Bali</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Bali</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Maldives</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Maldives</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Dubai</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Dubai</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Singapore</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Singapore</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Europe</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Europe</div>
       </div>
 
-      <div class="card">
-        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-title">Thailand</div>
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Thailand</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-section" id="services">
+    <h2 class="section-title">Our Travel Services</h2>
+    <p class="section-subtitle">Everything you need for a smooth and memorable trip</p>
+
+    <div class="services-grid">
+      <div class="service-box">
+        <h3>✈ Flight Assistance</h3>
+        <p>Support for planning and arranging your travel journey with convenience.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>🏨 Hotel Booking</h3>
+        <p>Comfortable stays from budget-friendly options to premium luxury properties.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>💑 Honeymoon Packages</h3>
+        <p>Romantic destinations and personalized plans for unforgettable couple trips.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>👨‍👩‍👧‍👦 Family Tours</h3>
+        <p>Enjoy stress-free travel with family-friendly itineraries and destination planning.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>🌍 International Tours</h3>
+        <p>Explore the best global destinations with premium planning support.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>📋 Custom Tour Planning</h3>
+        <p>We create tailor-made itineraries based on your destination, budget and comfort.</p>
       </div>
     </div>
   </section>
 
   <section class="contact-section" id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact-details">
+    <h2>Plan Your Next Holiday With Us</h2>
+    <div class="contact-text">
       <p>📞 <strong>7708541040 / 9600953883</strong></p>
       <p>📍 <strong>A2B Complex, Attur</strong></p>
       <p>📌 <strong>Branches:</strong> Chennai • Salem • Erode • Coimbatore</p>
-      <p>📸 <strong>Instagram:</strong> <a class="instagram-link" href="https://instagram.com/yuuveeholidayplanners" target="_blank">@yuuveeholidayplanners</a></p>
+      <p>📸 <strong>Instagram:</strong> <a href="https://instagram.com/yuuveeholidayplanners" target="_blank" class="instagram-link">@yuuveeholidayplanners</a></p>
     </div>
 
     <div class="contact-buttons">
-      <a href="https://wa.me/917708541040" class="btn btn-primary">WhatsApp Enquiry</a>
-      <a href="tel:7708541040" class="btn btn-secondary">Call Directly</a>
+      <a href="https://wa.me/917708541040" class="btn btn-whatsapp">WhatsApp Enquiry</a>
+      <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
     </div>
   </section>
 
