@@ -1,192 +1,837 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yuuvee Holiday Planners</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuuvee Holiday Planners</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Montserrat',sans-serif;background:#f5f7fb;}
+    body {
+      background: #f5f8fc;
+      color: #0f172a;
+      overflow-x: hidden;
+    }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
-background:#0b2c5a;
-color:#fff;
-}
+    a {
+      text-decoration: none;
+    }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-.logo img{
-height:50px;
-}
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(3, 21, 51, 0.96);
+      backdrop-filter: blur(12px);
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
 
-nav a{
-margin:0 15px;
-color:white;
-text-decoration:none;
-font-weight:600;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-.hero{
-height:85vh;
-background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
-text-align:center;
-}
+    .brand img {
+      height: 54px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 5px;
+    }
 
-.hero h1{
-font-size:55px;
-font-family:'Playfair Display',serif;
-}
+    .brand-name {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
 
-.hero p{
-margin-top:10px;
-font-size:20px;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
-.btns{
-margin-top:20px;
-}
+    .nav-links a {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-.btn{
-padding:12px 25px;
-border:none;
-border-radius:30px;
-margin:10px;
-cursor:pointer;
-font-weight:600;
-}
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
 
-.btn-primary{background:#1e88e5;color:white;}
-.btn-green{background:#25D366;color:white;}
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 120px 6% 80px;
+    }
 
-.section{
-padding:60px 40px;
-}
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
 
-.section h2{
-text-align:center;
-font-size:32px;
-margin-bottom:30px;
-}
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: fadeSlide 18s infinite;
+      transform: scale(1.05);
+    }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
+    .slide:nth-child(1) {
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
+      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+      animation-delay: 0s;
+    }
 
-.card{
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-background:white;
-}
+    .slide:nth-child(2) {
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
+      url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80');
+      animation-delay: 6s;
+    }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
+    .slide:nth-child(3) {
+      background-image: linear-gradient(rgba(2, 16, 40, 0.48), rgba(2, 16, 40, 0.55)),
+      url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80');
+      animation-delay: 12s;
+    }
 
-.card h3{
-text-align:center;
-padding:15px;
-background:#0b2c5a;
-color:white;
-}
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: scale(1.08); }
+      8% { opacity: 1; }
+      30% { opacity: 1; transform: scale(1.02); }
+      38% { opacity: 0; }
+      100% { opacity: 0; }
+    }
 
-.contact{
-background:#0b2c5a;
-color:white;
-text-align:center;
-padding:40px;
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+      color: white;
+    }
 
-footer{
-background:#091c3a;
-color:white;
-text-align:center;
-padding:15px;
-font-size:14px;
-}
-</style>
+    .hero-tag {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(255, 193, 7, 0.18);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fde68a;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
 
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      line-height: 1.08;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .hero p {
+      font-size: 22px;
+      line-height: 1.8;
+      color: #e2e8f0;
+      margin-bottom: 34px;
+      font-weight: 500;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 34px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(34, 197, 94, 0.28);
+    }
+
+    .btn-call {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: white;
+    }
+
+    .btn-call:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(14, 165, 233, 0.28);
+    }
+
+    .btn-enquire {
+      background: linear-gradient(135deg, #facc15, #f59e0b);
+      color: #111827;
+    }
+
+    .btn-enquire:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(250, 204, 21, 0.28);
+    }
+
+    .section {
+      padding: 90px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: #0b2c5f;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #64748b;
+      margin-bottom: 52px;
+    }
+
+    .features-grid, .services-grid, .packages-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .packages-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .feature-box, .service-box {
+      background: white;
+      border-radius: 24px;
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+      transition: 0.3s ease;
+    }
+
+    .feature-box:hover, .service-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 46px rgba(15, 23, 42, 0.12);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .feature-box h3, .service-box h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0b2c5f;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p, .service-box p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #64748b;
+    }
+
+    .package-card {
+      background: white;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+      transition: all 0.35s ease;
+    }
+
+    .package-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 26px 54px rgba(15, 23, 42, 0.16);
+    }
+
+    .package-image {
+      height: 230px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .package-name {
+      background: linear-gradient(135deg, #123c82, #0b2c5f);
+      color: white;
+      text-align: center;
+      padding: 18px 12px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .cta-strip {
+      background: linear-gradient(135deg, #0b2c5f, #0f4c9a);
+      color: white;
+      border-radius: 28px;
+      padding: 40px 30px;
+      text-align: center;
+      margin-top: 30px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+    }
+
+    .cta-strip h3 {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .cta-strip p {
+      font-size: 18px;
+      color: #dbeafe;
+      margin-bottom: 22px;
+    }
+
+    .contact-section {
+      background: linear-gradient(135deg, #031533, #072b61);
+      color: white;
+      text-align: center;
+      padding: 95px 6%;
+    }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .contact-text {
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 19px;
+      line-height: 2.2;
+      color: #dbeafe;
+    }
+
+    .contact-text strong {
+      color: white;
+    }
+
+    .instagram-link {
+      color: #38bdf8;
+      font-weight: 800;
+    }
+
+    .contact-buttons {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      background: #021226;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: white;
+      box-shadow: 0 16px 35px rgba(37, 211, 102, 0.35);
+      z-index: 999;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .enquiry-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .enquiry-box {
+      background: white;
+      width: 100%;
+      max-width: 760px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+      animation: popupFade 0.3s ease;
+      max-height: 92vh;
+      overflow-y: auto;
+    }
+
+    @keyframes popupFade {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .popup-header {
+      background: #facc15;
+      padding: 22px;
+      font-size: 28px;
+      font-weight: 800;
+      text-align: center;
+      color: #111827;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 22px;
+      top: 18px;
+      font-size: 28px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .popup-form {
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .popup-form input, .popup-form textarea, .popup-form select {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .popup-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .popup-form button {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 54px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 5%;
+      }
+
+      .brand-name {
+        font-size: 22px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .hero {
+        padding-top: 150px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .section-title,
+      .contact-section h2 {
+        font-size: 34px;
+      }
+
+      .section-subtitle {
+        font-size: 16px;
+      }
+
+      .package-image {
+        height: 210px;
+      }
+
+      .package-name {
+        font-size: 22px;
+      }
+
+      .cta-strip h3 {
+        font-size: 28px;
+      }
+
+      .contact-text {
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">
-<img src="logo.png">
-<h2>Yuuvee</h2>
-</div>
-<nav>
-<a href="#">Domestic</a>
-<a href="#">International</a>
-<a href="#">Contact</a>
-</nav>
-</header>
+  <div class="navbar">
+    <div class="brand">
+      <img src="logo.png" alt="Yuuvee Logo">
+      <div class="brand-name">Yuuvee Holiday Planners</div>
+    </div>
+    <div class="nav-links">
+      <a href="#domestic">Domestic</a>
+      <a href="#international">International</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
 
-<section class="hero">
-<h1>Premium Travel Experience</h1>
-<p>Domestic & International Packages</p>
-<div class="btns">
-<button class="btn btn-primary">Get Itinerary</button>
-<button class="btn btn-green">WhatsApp</button>
-</div>
-</section>
+  <section class="hero">
+    <div class="hero-slider">
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+    </div>
 
-<section class="section">
-<h2>Domestic Packages</h2>
-<div class="grid">
-<div class="card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"><h3>Andaman</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944"><h3>Kashmir</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad"><h3>Goa</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1593696954577-ab3d39317b97"><h3>Kerala</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1597047084897-51e81819a499"><h3>Ooty</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1605538883669-82503eec94f4"><h3>Munnar</h3></div>
-</div>
-</section>
+    <div class="hero-content">
+      <div class="hero-tag">Luxury Travel • Premium Experience • Trusted Planning</div>
+      <h1>Travel Beyond Ordinary</h1>
+      <p>Curated domestic and international holidays with premium service, comfort and unforgettable experiences by Yuuvee Holiday Planners.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/919600953883" class="btn btn-whatsapp" target="_blank">WhatsApp Enquiry</a>
+        <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
+        <a href="javascript:void(0)" onclick="openPopup()" class="btn btn-enquire">Enquire Now</a>
+      </div>
+    </div>
+  </section>
 
-<section class="section">
-<h2>International Packages</h2>
-<div class="grid">
-<div class="card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"><h3>Bali</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"><h3>Maldives</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c"><h3>Dubai</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd"><h3>Singapore</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d"><h3>Europe</h3></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9"><h3>Thailand</h3></div>
-</div>
-</section>
+  <section class="section">
+    <h2 class="section-title">Why Travel With Yuuvee?</h2>
+    <p class="section-subtitle">Premium travel experiences planned with care, style and trust</p>
 
-<section class="contact">
-<h2>Contact Us</h2>
-<p>📞 7708541040 / 9600953883</p>
-<p>📍 A2B Complex, Attur</p>
-<p>Branches: Chennai • Salem • Erode • Coimbatore</p>
-<p>📸 Instagram: @yuuveeholidayplanners</p>
-</section>
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon">✈️</div>
+        <h3>Customized Itineraries</h3>
+        <p>Tailor-made holidays designed around your travel style, budget and dream destinations.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🏨</div>
+        <h3>Luxury Stays</h3>
+        <p>Carefully selected stays that combine comfort, location and premium experience.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">💑</div>
+        <h3>Honeymoon & Family Trips</h3>
+        <p>Perfectly planned romantic escapes and memorable family holidays.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">📞</div>
+        <h3>Complete Assistance</h3>
+        <p>From planning to return, we help you at every stage of your travel journey.</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-© 2026 Yuuvee Holiday Planners
-</footer>
+  <section class="section" id="domestic">
+    <h2 class="section-title">Domestic Packages</h2>
+    <p class="section-subtitle">Handpicked destinations across India for every kind of traveler</p>
+
+    <div class="packages-grid">
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Andaman</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Kashmir</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Goa</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Kerala</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Ooty</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Munnar</div>
+      </div>
+    </div>
+
+    <div class="cta-strip">
+      <h3>Planning Your Next Holiday?</h3>
+      <p>Get a customized travel plan for your dream destination with Yuuvee Holiday Planners.</p>
+      <a href="javascript:void(0)" onclick="openPopup()" class="btn btn-enquire">Get Free Travel Plan</a>
+    </div>
+  </section>
+
+  <section class="section" id="international" style="background:#ffffff;">
+    <h2 class="section-title">International Packages</h2>
+    <p class="section-subtitle">Luxury escapes and unforgettable global experiences</p>
+
+    <div class="packages-grid">
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Bali</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Maldives</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Dubai</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Singapore</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Europe</div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-image" style="background-image:url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="package-name">Thailand</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services" style="background: linear-gradient(135deg, #f8fbff, #eef5ff);">
+    <h2 class="section-title">Our Travel Services</h2>
+    <p class="section-subtitle">Everything you need for a seamless and premium travel experience</p>
+
+    <div class="services-grid">
+      <div class="service-box">
+        <h3>✈ Flight Assistance</h3>
+        <p>End-to-end support for planning your travel journey with ease and comfort.</p>
+      </div>
+      <div class="service-box">
+        <h3>🏨 Hotel Booking</h3>
+        <p>Comfortable and premium stays curated for your destination and travel needs.</p>
+      </div>
+      <div class="service-box">
+        <h3>💑 Honeymoon Packages</h3>
+        <p>Romantic destinations and personalized experiences for couples.</p>
+      </div>
+      <div class="service-box">
+        <h3>👨‍👩‍👧‍👦 Family Tours</h3>
+        <p>Stress-free and enjoyable family vacations with complete travel planning.</p>
+      </div>
+      <div class="service-box">
+        <h3>🌍 International Tours</h3>
+        <p>Explore the world with premium travel planning and destination guidance.</p>
+      </div>
+      <div class="service-box">
+        <h3>📋 Custom Planning</h3>
+        <p>Travel plans crafted specially for your budget, comfort and style.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Plan Your Next Holiday With Us</h2>
+    <div class="contact-text">
+      <p>📞 <strong>7708541040 / 9600953883</strong></p>
+      <p>📍 <strong>A2B Complex, Attur</strong></p>
+      <p>📌 <strong>Branches:</strong> Chennai • Salem • Erode • Coimbatore</p>
+      <p>📸 <strong>Instagram:</strong> <a href="https://instagram.com/yuuveeholidayplanners" target="_blank" class="instagram-link">@yuuveeholidayplanners</a></p>
+    </div>
+
+    <div class="contact-buttons">
+      <a href="https://wa.me/919600953883" class="btn btn-whatsapp" target="_blank">WhatsApp Enquiry</a>
+      <a href="tel:7708541040" class="btn btn-call">Call Directly</a>
+      <a href="javascript:void(0)" onclick="openPopup()" class="btn btn-enquire">Enquire Now</a>
+    </div>
+  </section>
+
+  <div class="footer">
+    © 2026 Yuuvee Holiday Planners Private Limited. All Rights Reserved.
+  </div>
+
+  <a href="https://wa.me/919600953883" class="floating-whatsapp" target="_blank">💬</a>
+
+  <div class="enquiry-popup" id="enquiryPopup">
+    <div class="enquiry-box">
+      <div class="popup-header">
+        Enquire Now
+        <span class="close-btn" onclick="closePopup()">×</span>
+      </div>
+
+      <form class="popup-form" id="enquiryForm" action="https://formsubmit.co/your-email@example.com" method="POST">
+        <input type="hidden" name="_subject" value="New Travel Enquiry - Yuuvee Holiday Planners">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <input type="text" name="Name" id="name" placeholder="Name *" required>
+        <input type="text" name="City" id="city" placeholder="City of Residence *" required>
+        <input type="email" name="Email" id="email" placeholder="Email *" required>
+        <input type="tel" name="Phone" id="phone" placeholder="Phone Number *" required>
+        <input type="text" name="WhatsApp" id="whatsapp" placeholder="WhatsApp Number *" required>
+        <input type="text" name="Destination" id="destination" placeholder="Travel Destination *" required>
+        <input type="date" name="Travel Date" id="travelDate" required>
+        <input type="number" name="People" id="people" placeholder="No. of People *" required>
+        <textarea name="Trip Details" id="details" placeholder="Tell us about your trip plan..."></textarea>
+
+        <button type="submit">Submit Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById("enquiryPopup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("enquiryPopup").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const popup = document.getElementById("enquiryPopup");
+      if (event.target === popup) {
+        popup.style.display = "none";
+      }
+    }
+
+    setTimeout(() => {
+      openPopup();
+    }, 5000);
+
+    document.getElementById("enquiryForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const city = document.getElementById("city").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const destination = document.getElementById("destination").value;
+      const travelDate = document.getElementById("travelDate").value;
+      const people = document.getElementById("people").value;
+      const details = document.getElementById("details").value;
+
+      const message = `*New Travel Enquiry - Yuuvee Holiday Planners*%0A%0A` +
+        `*Name:* ${name}%0A` +
+        `*City:* ${city}%0A` +
+        `*Email:* ${email}%0A` +
+        `*Phone:* ${phone}%0A` +
+        `*WhatsApp:* ${whatsapp}%0A` +
+        `*Destination:* ${destination}%0A` +
+        `*Travel Date:* ${travelDate}%0A` +
+        `*No. of People:* ${people}%0A` +
+        `*Trip Details:* ${details}`;
+
+      window.open(`https://wa.me/919600953883?text=${message}`, '_blank');
+
+      setTimeout(() => {
+        e.target.submit();
+      }, 1000);
+    });
+  </script>
 
 </body>
 </html>
